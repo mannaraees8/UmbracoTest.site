@@ -1,0 +1,62 @@
+﻿body {
+    padding: 0;
+    margin: auto;
+    box-sizing: border-box;
+    font-family: Raleway,sans-serif;
+    background: #eee;
+    overflow-x: hidden;
+}
+
+.navbar-brand {
+    color: #ffc107;
+}
+
+.nav-link {
+    color: white;
+}
+
+    .nav-link.active {
+        color: white !important;
+    }
+
+.footer-links {
+    text-decoration: none;
+    color: white;
+}
+
+nav .nav-link {
+    width: 100px;
+}
+
+.body {
+    background: #eee;
+}
+
+nav.navbar {
+    position: sticky;
+    top: 0;
+}
+.home-image {
+    max-height: auto;
+}
+
+.form-control {
+    background-color: transparent;
+    border: 1px solid #000;
+    border-radius: 0;
+    padding: 15px;
+}
+
+#aboheightg {
+    max-height: 200px;
+    object-fit: contain;
+}
+
+.expertise-image {
+    max-height: 100px;
+    object-fit: contain;
+}
+.about-image{
+    max-height:300px;
+    object-fit:contain;
+}

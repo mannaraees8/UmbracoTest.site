@@ -1,0 +1,166 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using UmbracoTest.site.umbraco.models
+@{
+    Layout = "Master.cshtml";
+}
+
+@if (TempData["isEmailSent"] != null && (bool)TempData["isEmailSent"])
+{
+    <div class="alert alert-success" role="alert">
+        We greatly appreciate your message. Rest assured, we'll be in touch with you shortly.
+    </div>
+}
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+
+
+        <section id="home" class="p-3">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center fw-bold">@Model.HomeTitle</h1>
+                </div>
+                <div class="col-12">&nbsp;</div>
+                <div class="col-12">&nbsp;</div>
+                <div class="col-12 col-md-5 p-3 text-center">
+                    @if (Model.HomeImage != null && !String.IsNullOrEmpty(Model.HomeImage.Url()))
+                    {
+                        <img class="img-fluid home-image" height="400" width="400" src="@Model.HomeImage.Url()" />
+                    }
+                </div>
+                <div class="col-12 col-md-7 p-3 text-left">
+
+                    <h2 class="h3">@Model.HomeSubTitle</h2>
+                    <br />
+                    @Model.HomeText
+                </div>
+            </div>
+        </section>
+        <hr />
+        <section id="about" class="p-3">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center fw-bold">@Model.AboutTitle</h1>
+                </div>
+                <div class="col-12">&nbsp;</div>
+                <div class="col-12">&nbsp;</div>
+                <div class="col-12 col-md-5 p-3 text-center">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                @if (Model.AboutImage1 != null && !String.IsNullOrEmpty(Model.AboutImage1.Url()))
+                                {
+                                    <img class="img-fluid about-image" height="400" width="400" src="@Model.AboutImage1.Url()" />
+                                }
+                            </div>
+                            <div class="col-6">
+                                @if (Model.AboutImage2 != null && !String.IsNullOrEmpty(Model.AboutImage2.Url()))
+                                {
+                                    <img class="img-fluid about-image" height="400" width="400" src="@Model.AboutImage2.Url()" />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">&nbsp;</div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                @if (Model.AboutImage3 != null && !String.IsNullOrEmpty(Model.AboutImage3.Url()))
+                                {
+                                    <img class="img-fluid about-image" height="400" width="400" src="@Model.AboutImage3.Url()" />
+                                }
+                            </div>
+                            <div class="col-6">
+                                @if (Model.AboutImage4 != null && !String.IsNullOrEmpty(Model.AboutImage4.Url()))
+                                {
+                                    <img class="img-fluid about-image" height="400" width="400" src="@Model.AboutImage4.Url()" />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-7 p-3 text-left">
+                    @Model.AboutText
+                </div>
+            </div>
+        </section>
+
+        <hr />
+        <section id="technology-expetise" class="p-3">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center fw-bold">@Model.ExpertiseTitle</h1>
+                </div>
+                <div class="col-12">&nbsp;</div>
+                <div class="col-12">
+                    @Model.ExpertiseText
+                </div>
+                <div class="d-flex gap-5 justify-content-center">
+                    @if (Model.ExpertiseImages != null)
+                    {
+                        foreach (var img in Model.ExpertiseImages)
+                        {
+                            <img class="img-fluid expertise-image" height="200" width="200" src="@img.Url()" />
+                        }
+                    }
+                </div>
+            </div>
+        </section>
+
+        <hr />
+        <section id="contact" class="p-3">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="text-center fw-bold">Quick Enquiry</h1>
+                </div>
+                <div class="col-12">&nbsp;</div>
+                <div class="col-12 text-center">
+                    <p>
+                        Unsure about proceeding with our project form? Share some information,
+                        and we'll reach out to assist you in making an informed decision
+                    </p>
+                </div>
+
+            </div>
+            <div class="col-12">&nbsp;</div>
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8">
+                    <div class="card-body">
+                        @using (Html.BeginUmbracoForm("SubmitForm", "ContactSurface", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" required name="fullName" class="form-control" id="fullName" placeholder="Name" />
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label for="email">Email</label>
+                                    <input type="email" required name="email" class="form-control" id="email" placeholder="Email" />
+                                </div>
+                                <div class="col-12">&nbsp;</div>
+                                <div class="col-12">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="text" maxlength="20" name="phone" required class="form-control" id="phone" placeholder="Phone" />
+                                </div>
+                                <div class="col-12">&nbsp;</div>
+                                <div class="col-12">
+                                    <label for="message">Message</label>
+                                    <textarea type="text" rows="3" name="message" required class="form-control" id="message" placeholder="Send us a message..."></textarea>
+                                </div>
+                                <div class="col-12">&nbsp;</div>
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-lg btn-warning">Submit</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <div class="col-md-1"></div>
+</div>
